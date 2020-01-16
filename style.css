@@ -5,6 +5,7 @@ body
     font-family: sans-serif;
     background-size: cover;
     background: url(form-background.jpg) no-repeat center center fixed;
+     background-position: center;
     
 }
 .sign-up-form
