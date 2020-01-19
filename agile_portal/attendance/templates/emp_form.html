@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title>Employee's form</title>
+    </head>
+
+    <body>
+        <h1 align=center>Enter Employee's code</h1>
+
+        <form action="check_emp_code/" method="POST">
+            {% csrf_token %}
+            <label for="emp">Employee Code: </label>
+            <input type="text" id="emp" name="emp_code">
+            <input type="submit" value="OK">
+        </form>
+    </body>
+</html>

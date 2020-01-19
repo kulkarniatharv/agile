@@ -1,0 +1,78 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login Page</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<script type="text/javascript" >
+      function getPosition()
+      {
+        if(navigator.geolocation)
+        {
+          navigator.geolocation.getCurrentPosition(success);
+        }
+        else
+        {
+          document.getElementById("result").innerHTML="Your browser doesn't support GeoLocation API";
+
+        }
+      }
+
+      function success(position)
+      {
+        var lat = position.coords.latitude;
+        var lng = position.coords.longitude;
+        //document.getElementById("result").innerHTML = "Latitude:"+lat+"<br/>Longitude:"+lng;
+		document.getElementById("Latitude").value=lat;
+		document.getElementById("Longitude").value=lng;
+      }
+	  
+    </script>
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+	<script>
+		$(document).ready(function() {
+        getPosition();
+});
+	</script>
+	
+</head>
+	<body>
+		
+		<div class="container-fluid bg">		
+			<div class="row justify-content-center">
+				<div class="col 12 col-sm-6 col-md-3">
+
+
+					<form class="form-container" method="POST" action="/attendance/check_location/">
+            {% csrf_token %}
+						<div class="form-group">
+							<label for="Email1">User ID</label>
+							<input type="email" class="form-control" id="Email1" name="email">							
+						</div>
+						<div class="form-group">
+							<label for="Password1">Password</label>
+							<input type="password" class="form-control" id="Password1">
+						</div>
+						<div class="form-group form-check">
+							<input type="checkbox" class="form-check-input" id="Check1" >
+							<label class="form-check-label" for="Check1">Save information</label>
+						</div>
+						<input type="text" class="form-control" id="Latitude"  name="lat" value="" />  <!-- 18.5846382 -->
+            <input type="text" class="form-control" id="Longitude" name="lon" value="" />  <!-- 73.7366744 -->
+            <input type="hidden" class="form-control" id="employee" name="employeeID" value="{{ employee.eID }}" />
+						<input type="submit" class="btn btn-primary btn-block" value="Submit" />
+					</form>
+          
+          
+				</div>
+			</div>
+			
+		</div>
+		<!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
+		<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script> -->
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	</body>
+</html>
