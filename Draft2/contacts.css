@@ -1,0 +1,75 @@
+@import url('https://rsms.me/inter/inter.css');
+html { font-family: 'Inter', sans-serif; }
+@supports (font-variation-settings: normal) {
+  html { font-family: 'Inter var', sans-serif; }
+}
+html{
+  scroll-behavior: smooth;
+}
+* {
+    box-sizing: border-box;
+    font: 1em  'Inter' sans-serif;
+  }
+  h1{
+      font: 2em bold;
+      font-family: 'Inter',Arial, Helvetica, sans-serif;
+      color: rgba(253, 255, 252, 1);
+  }
+  p{
+      font:1.2em bolder;
+      font-family: 'Inter',Arial, Helvetica, sans-serif;
+      color: rgba(253, 255, 252, 1);
+  }
+  /* Style inputs */
+  input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(204, 204, 204, 0.5);
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+  }
+  
+  input[type=submit] {
+    background-color: rgba(46, 196, 182, 1);
+    color:rgba(253, 255, 252, 1);
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: rgba(46, 196, 181, 0.5);
+  }
+  
+  /* Style the container/contact section */
+  .container_1 {
+    border-radius: 10px;
+    background-color:rgba(231, 29, 54, 0.9);
+    padding: 150px;
+    max-width: auto;
+  }
+  
+  /* Create two columns that float next to eachother */
+  .column {
+    float: left;
+    width: 50%;
+    margin-top: 6px;
+    padding: 20px;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+    .column, input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+    }
+  }
+  
