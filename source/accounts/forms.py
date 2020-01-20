@@ -4,12 +4,16 @@ from django.contrib.auth import (
     get_user_model
 
 )
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+
 
 User = get_user_model()
 
 
 class UserLoginForm(forms.Form):
     username = forms.CharField()
+
     password = forms.CharField(widget=forms.PasswordInput)
 
     def clean(self, *args, **kwargs):
@@ -28,6 +32,8 @@ class UserLoginForm(forms.Form):
 
 
 class UserRegisterForm(forms.ModelForm):
+    name = forms.CharField(label='Name')
+    
     email = forms.EmailField(label='Email address')    
     password = forms.CharField(widget=forms.PasswordInput, label='Password')
     password2 = forms.CharField(widget=forms.PasswordInput, label='Confirm Password')
@@ -35,12 +41,19 @@ class UserRegisterForm(forms.ModelForm):
         model = User
         fields = [
             'username',
+            'name',
+          
             'email',            
             'password',
             'password2'
         ]
 
-    def clean(self, *args, **kwargs):
+    def clean(self, *args, **kwargs):       
+        name = self.cleaned_data.get('name')
+
+        username = self.cleaned_data.get('username')
+        
+       
         email = self.cleaned_data.get('email')
         password = self.cleaned_data.get('password')
         password2 = self.cleaned_data.get('password2')

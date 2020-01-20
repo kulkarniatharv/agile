@@ -8,6 +8,13 @@ from django.contrib.auth import (
 )
 
 from .forms import UserLoginForm, UserRegisterForm
+from django.urls import reverse
+
+
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.decorators import login_required
 
 
 def login_view(request):
@@ -32,7 +39,6 @@ def register_view(request):
     next = request.GET.get('next')
     form = UserRegisterForm(request.POST or None)
     if form.is_valid():
-        user = form.save(commit=False)
         password = form.cleaned_data.get('password')
         user.set_password(password)
         user.save()
@@ -45,7 +51,7 @@ def register_view(request):
     context = {
         'form': form,
     }
-    return render(request, "signup.html", context)
+    return render(request, "signup_k.html", context)
 
 
 def logout_view(request):
